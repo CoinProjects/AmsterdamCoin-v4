@@ -2177,43 +2177,44 @@ int64_t GetBlockValue(int nHeight)
         if (nHeight < 200 && nHeight > 0)
             return 250000 * COIN;
     }
-	
-	if (nHeight == 317395)
-		return 60000000 * COIN;
 
-    if (nHeight == 0) {
-        nSubsidy = 80000000 * COIN;
-    } else if (nHeight < 86400 && nHeight > 0) {
-        nSubsidy = 7.5 * COIN;
-    } else if (nHeight < 151200 && nHeight >= 86400) {
-        nSubsidy = 7.5 * COIN;
-    } else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight >= 151200) {
-        nSubsidy = 5 * COIN;
-    } else if (nHeight <= 302399 && nHeight > Params().LAST_POW_BLOCK()) {
-        nSubsidy = 4.75 * COIN;
-    } else if (nHeight <= 345599 && nHeight >= 302400) {
-        nSubsidy = 4.5 * COIN;
-    } else if (nHeight <= 388799 && nHeight >= 345600) {
-        nSubsidy = 4.25 * COIN;
-    } else if (nHeight <= 431999 && nHeight >= 388800) {
-        nSubsidy = 4 * COIN;
-    } else if (nHeight <= 475199 && nHeight >= 432000) {
-        nSubsidy = 3.75 * COIN;
-    } else if (nHeight <= 518399 && nHeight >= 475200) {
-        nSubsidy = 3.5 * COIN;
-    } else if (nHeight <= 561599 && nHeight >= 518400) {
-        nSubsidy = 3.25 * COIN;
-    } else if (nHeight <= 604799 && nHeight >= 561600) {
-        nSubsidy = 3 * COIN;
-    } else if (nHeight <= 647999 && nHeight >= 604800) {
-        nSubsidy = 2.25 * COIN;
-    } else if (nHeight >= 648000) {
-        nSubsidy = 2 * COIN;
-    } else {
-        nSubsidy = 0 * COIN;
-    }
-    return nSubsidy;
-}
+    if (nHeight == 317395)
+  		return 60000000 * COIN;
+
+      if (nHeight == 0) {
+          nSubsidy = 80000000 * COIN;
+      } else if (nHeight < 86400 && nHeight > 0) {
+          nSubsidy = 7.5 * COIN;
+      } else if (nHeight < 151200 && nHeight >= 86400) {
+          nSubsidy = 7.5 * COIN;
+      } else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight >= 151200) {
+          nSubsidy = 5 * COIN;
+      } else if (nHeight <= 302399 && nHeight > Params().LAST_POW_BLOCK()) {
+          nSubsidy = 4.75 * COIN;
+      } else if (nHeight <= 345599 && nHeight >= 302400) {
+          nSubsidy = 4.5 * COIN;
+      } else if (nHeight <= 388799 && nHeight >= 345600) {
+          nSubsidy = 4.25 * COIN;
+      } else if (nHeight <= 431999 && nHeight >= 388800) {
+          nSubsidy = 4 * COIN;
+      } else if (nHeight <= 475199 && nHeight >= 432000) {
+          nSubsidy = 3.75 * COIN;
+      } else if (nHeight <= 518399 && nHeight >= 475200) {
+          nSubsidy = 3.5 * COIN;
+      } else if (nHeight <= 561599 && nHeight >= 518400) {
+          nSubsidy = 3.25 * COIN;
+      } else if (nHeight <= 604799 && nHeight >= 561600) {
+          nSubsidy = 3 * COIN;
+      } else if (nHeight <= 647999 && nHeight >= 604800) {
+          nSubsidy = 2.25 * COIN;
+      } else if (nHeight >= 648000) {
+          nSubsidy = 2 * COIN;
+      } else {
+          nSubsidy = 0 * COIN;
+      }
+      return nSubsidy;
+  }
+
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount)
 {
@@ -2223,16 +2224,16 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
         if (nHeight < 200)
             return 0;
     }
-	
+
 	if (nHeight == 317395)
 		return 0;
-	
+
 	if (nHeight > 317395)
 		return blockValue / 2;
-	
+
 	if (nHeight == 0)
 		return 0;
-	
+
     if (nHeight <= 43200) {
         ret = blockValue / 5;
     } else if (nHeight < 86400 && nHeight > 43200) {
@@ -3117,11 +3118,11 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     unsigned int flags = fStrictPayToScriptHash ? SCRIPT_VERIFY_P2SH : SCRIPT_VERIFY_NONE;
 
     // Start enforcing the DERSIG (BIP66) rules, for block.nVersion=3 blocks, when 75% of the network has upgraded:
-    
+
     if (block.nVersion >= 3 && CBlockIndex::IsSuperMajority(3, pindex->pprev, Params().EnforceBlockUpgradeMajority())) {
         flags |= SCRIPT_VERIFY_DERSIG;
     }
-    
+
 
     CBlockUndo blockundo;
 
@@ -4536,7 +4537,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
 
     return true;
 }
- 
+
 bool CBlockIndex::IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRequired)
 {
     unsigned int nToCheck = Params().ToCheckBlockUpgradeMajority();
