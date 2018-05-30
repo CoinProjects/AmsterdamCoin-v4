@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2015-2017 The AmsterdamCoin developers
+// Copyright (c) 2015-2017 The CreaCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include "libzerocoin/Params.h"
@@ -48,30 +48,12 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-	(0, uint256("0x0000016c5074e3a3d7df0c9b9cdc38ef6a72be36c4a3a0233a564533120957f5"))
-	(2, uint256("0x00000bfa9f5517a83532d103038e78941ed28eda11b8fa920cc6c1659e569f75"))
-	(100, uint256("0x000002efcd0a7b5401f8f964da7d59e7e7bc97683f986d1a295e5a73eca82115"))
-	(1000, uint256("0x000000050f6aef7d6f40d0cdf0e0aa7d1c2e61df8baa749690362ea17d0858cc"))
-	(2500, uint256("0x00000001391861008686ef56ad88dc081008fcbf0d3f8b35feaaa8f9f5b1bf38"))
-	(5000, uint256("0x00000006c99fde6e870ace24f99cebc6f8515df5afb06fe8a086a4f12962e674"))
-	(10000, uint256("0x0000000104ef393983220a2eec841527ff61cd04ad3b98cfbf83f6ebdfd2dd33"))
-	(25000, uint256("0x0000000099d13ab3e0210d072a7ab394c1ec3e8a2efe9c3835fa5c3f36d5623c"))
-	(50000, uint256("0x000000034bdb1897922d0dd2608ccd71ec3782a021ddb619c3366195e3210b4c"))
-	(67260, uint256("0x0000000009e85f5c57095d56743bc79f347d36ebf1e142b17ba47f4f2c587b6e"))
-	(75000, uint256("0x000000008f1aa425f16d3858160f3f9db4d8df7f471b8b243d493a075de28e53"))
-	(100000, uint256("0x000000001a2a84195221e3f9a0ffecbd80b7f8c308c8144f5781dbcdbb3ce3ce"))
-	(125000, uint256("0x0000000164a51694ebddfc2d653625e77f30344c3f5618f0b79a773b5fa14c04"))
-	(140000, uint256("0x00000000ce15c109cd977c89cac631932b9706ffa3236ae71ccf755281d74163"))
-	(145000, uint256("0x00000000978ef8e749fbb77b6d8be5d8e92f6e78192752adee6d4734888a9e27"))
-	(163813, uint256("0x00000000fbaeeb07c4355c4c2f90548991189e89c2928e6048def02e226ffead"))
-    (263537, uint256("0x354683101699031dd20793147bef858f4a744e9bb0b3c56573939dcef08c7473"))
-	(317394, uint256("0xa8f97557b5b191958014b58ce4fc24e93470d5185bd00656b2fcb54b5c1000d1"))
-	(317399, uint256("0xa9ea503a5ef55c2be3a2fbaac218c99d8a1c213fc913a6ee6089b7d51f11c71b"));
-    
+	(0, uint256("0x00000a0e00ed255330b6e645e6e943c5d50c8b62a5c92ef2603c17bad9ac3a73"));
+
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1526828147, // * UNIX timestamp of last checkpoint block
-    391445,    // * total number of transactions between genesis and last checkpoint
+    1527674400, // * UNIX timestamp of last checkpoint block
+    0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2880        // * estimated number of transactions per day after checkpoint
 };
@@ -113,54 +95,50 @@ public:
         pchMessageStart[1] = 0x22;
         pchMessageStart[2] = 0x00;
         pchMessageStart[3] = 0xaa;
-        vAlertPubKey = ParseHex("04d6d976efad463fa258e3699e9c3fea60d5168a065abb5829a77448d25e0acbee58bb8f5be56491624b9a48611a8c456a592d45f48ea9c9f0bdc30904534be285");
-        nDefaultPort = 50020;
-        bnProofOfWorkLimit = ~uint256(0) >> 20; // AmsterdamCoin starting difficulty is 1 / 2^12
+        vAlertPubKey = ParseHex("042f1c1963c1efff3b846209dd9433d2c67347c31e2163198e896caeaa7fa887449bc59fc267623b16e446f494d06c3bcf65a46babdb6e87560b60fcc7199971c8");
+        nDefaultPort = 8800;
+        bnProofOfWorkLimit = ~uint256(0) >> 20; // CreaCoin starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // AmsterdamCoin: 1 minute
-        nTargetSpacing = 1 * 60;  // AmsterdamCoin: 1 minute
-        nMaturity = 101;
-	nMaxMoneyOut = 10000000000 * COIN;
+        nTargetTimespan = 1 * 120; // CreaCoin: 1 minute
+        nTargetSpacing = 1 * 120;  // CreaCoin: 1 minute
+        nMaturity = 51;
+	nMaxMoneyOut = 25000000 * COIN;
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 259200;
+        nLastPOWBlock = 2000000;
         nModifierUpdateBlock = 1;
-		
+
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
-        nZerocoinStartTime = 1522423297; // Friday, March 30, 2018 5:21:37 PM GMT+02:00 DST
-	nZerocoinStartHeight = 263537;
-		
-	const char* pszTimestamp = "AmsterdamCoin 22-07-2017";
-		
+        nZerocoinStartTime = 1528664400; // Friday, March 30, 2018 5:21:37 PM GMT+02:00 DST
+	nZerocoinStartHeight = 8250;
+
+	const char* pszTimestamp = "Crea Coin will start at 10:00 a.m. on 30 May 2018";
+
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
-				
+
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 0 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("0421fb0665876637d9d79d03a24f383393838fb9e3340858a6d5a70b079f4af57cfff3ca00310be5300d532adf6261ba98ac70d24d943a6be333bec6d7a6d93013") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04dfab48e49169da8dd843d67a836e088a2ab91b9139d8a5449b5f703270da001db34f56774c2267dc2fa7d22def8166a1fe8a2b331dad89479f52853aece7bfd2") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1500685200;
+        genesis.nTime = 1527674400;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 1402465;
+        genesis.nNonce = 868987;
         hashGenesisBlock = genesis.GetHash();
-		
-        assert(hashGenesisBlock == uint256("0x0000016c5074e3a3d7df0c9b9cdc38ef6a72be36c4a3a0233a564533120957f5"));
-        assert(genesis.hashMerkleRoot == uint256("0xcdf9a0f882351aa571e3f647ef82858c08b5eb4f1847df68787f15cc42c36529"));
-		
-        vSeeds.push_back(CDNSSeedData("nl-1.amsterdamcoin.com", "nl-1.amsterdamcoin.com"));
-        vSeeds.push_back(CDNSSeedData("us-1.amsterdamcoin.com", "us-1.amsterdamcoin.com"));
-	vSeeds.push_back(CDNSSeedData("us-2.amsterdamcoin.com", "us-2.amsterdamcoin.com"));
-	vSeeds.push_back(CDNSSeedData("eu-1.amsterdamcoin.com", "eu-1.amsterdamcoin.com"));
-	vSeeds.push_back(CDNSSeedData("eu-2.amsterdamcoin.com", "eu-2.amsterdamcoin.com"));
-	vSeeds.push_back(CDNSSeedData("asia-1.amsterdamcoin.com", "asia-1.amsterdamcoin.com"));
 
-		
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 23);
+        assert(hashGenesisBlock == uint256("0x00000a0e00ed255330b6e645e6e943c5d50c8b62a5c92ef2603c17bad9ac3a73"));
+        assert(genesis.hashMerkleRoot == uint256("0xbf3bb8ffbe75764e90cd8811c275a3ccdd90dd4ce8516541b433fc26e7daddf3"));
+
+        vSeeds.push_back(CDNSSeedData("dnss1.creacoin.info", "dnss1.creacoin.info"));
+        vSeeds.push_back(CDNSSeedData("dnss2.creacoin.info", "dnss2.creacoin.info"));
+
+
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 28);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 212);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
@@ -178,10 +156,10 @@ public:
         fTestnetToBeDeprecatedFieldRPC = false;
         fHeadersFirstSyncingActive = false;
         nPoolMaxTransactions = 3;
-        strSporkKey = "04d6d976efad463fa258e3699e9c3fea60d5168a065abb5829a77448d25e0acbee58bb8f5be56491624b9a48611a8c456a592d45f48ea9c9f0bdc30904534be285";
-        
+        strSporkKey = "0434273b4ec9c9111cd9ca592281e001f6737e18fbe63d2024f17873ba9d8ba3bff040c52e1bdb46c703c3baa62f4d7e8aa1f1f26d32c8ef737919762fd18e4c9e";
+
         strObfuscationPoolDummyAddress = "AWSbBnzmNkjDVaYHX7vkL1MqD96pRYWtZo";
-        nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
+        nStartMasternodePayments = 1527710400; //Wed, 25 Jun 2014 20:36:16 GMT
 
         /** Zerocoin */
         zerocoinModulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
@@ -218,11 +196,11 @@ public:
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
-        vAlertPubKey = ParseHex("000010e83b2703ccf322f7dbd62dd5855ac7c10bd055814ce121ba32607d573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd42774babea0a073b2ed0c9");
-        nDefaultPort = 51474;
+        vAlertPubKey = ParseHex("04892144b13b497481187ebf8bc341bb259f1aadae8d8fd40b1e20d048f4bb27554609e4a78eb4cd8d468eebf939a9287eda51e7b60b224401027b18919ef4bd1f");
+        nDefaultPort = 51374;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // AmsterdamCoin: 1 day
-        nTargetSpacing = 1 * 60;  // AmsterdamCoin: 1 minute
+        nTargetTimespan = 1 * 60; // CreaCoin: 1 day
+        nTargetSpacing = 1 * 60;  // CreaCoin: 1 minute
         nLastPOWBlock = 200;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
@@ -230,24 +208,24 @@ public:
         nMaxMoneyOut = 43199500 * COIN;
         nZerocoinStartHeight = 201576;
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1454124731;
+        genesis.nTime = 1527674402;
         genesis.nNonce = 2402015;
         hashGenesisBlock = genesis.GetHash();
         //assert(hashGenesisBlock == uint256("0x0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818"));
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "amsterdamcoin-testnet.seed.fuzzbawls.pw"));
-        vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "amsterdamcoin-testnet.seed2.fuzzbawls.pw"));
+        vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "creaccoin-testnet.seed.fuzzbawls.pw"));
+        vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "creaccoin-testnet.seed2.fuzzbawls.pw"));
         vSeeds.push_back(CDNSSeedData("s3v3nh4cks.ddns.net", "s3v3nh4cks.ddns.net"));
         vSeeds.push_back(CDNSSeedData("88.198.192.110", "88.198.192.110"));
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet amsterdamcoin addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet amsterdamcoin script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet creaccoin addresses start with 'x' or 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet creaccoin script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        // Testnet amsterdamcoin BIP32 pubkeys start with 'DRKV'
+        // Testnet creaccoin BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
-        // Testnet amsterdamcoin BIP32 prvkeys start with 'DRKP'
+        // Testnet creaccoin BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet amsterdamcoin BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet creaccoin BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
         fRequireRPCPassword = true;
@@ -258,10 +236,10 @@ public:
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = true;
         nPoolMaxTransactions = 2;
-        strSporkKey = "04348C2F50F90267E64FACC65BFDC9D0EB147D090872FB97ABAE92E9A36E6CA60983E28E741F8E7277B11A7479B626AC115BA31463AC48178A5075C5A9319D4A38";
+        strSporkKey = "04b601b59a62bca85399aebae85d485b7a684bf1d9ef3162e86a8141ec679253f48d02d2155afa06e3d0dc12a58c228407ba42a7ab4f7f35e9e1b2e020ed76512c";
         strObfuscationPoolDummyAddress = "y57cqfGRkekRyDRNeJiLtYVEbvhXrNbmox";
         nStartMasternodePayments = 1420837558; //Fri, 09 Jan 2015 21:05:58 GMT
-        nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short 
+        nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short
                                        // here because we only have a 8 block finalization window on testnet
     }
     const Checkpoints::CCheckpointData& Checkpoints() const
@@ -287,8 +265,8 @@ public:
         pchMessageStart[3] = 0xac;
         nSubsidyHalvingInterval = 150;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // AmsterdamCoin: 1 day
-        nTargetSpacing = 1 * 60;        // AmsterdamCoin: 1 minutes
+        nTargetTimespan = 24 * 60 * 60; // CreaCoin: 1 day
+        nTargetSpacing = 1 * 60;        // CreaCoin: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1454124731;
         genesis.nBits = 0x207fffff;
